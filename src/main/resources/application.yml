@@ -6,6 +6,7 @@ spring:
      driver-class-name: com.mysql.jdbc.Driver
 
 
-#mybatis:
-#  mapper-locations: classpath:mapping/*.xml
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  config-locations: classpath:mybatis/mybatis-config.xml
 #  type-aliases-package: com.springboot.domain.

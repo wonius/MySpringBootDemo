@@ -38,6 +38,10 @@
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>1.3.2</version>
 		</dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
 
 		<dependency>
 			<groupId>mysql</groupId>
@@ -55,7 +59,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!--jmockit-->
+		<!-- mock -->
         <dependency>
             <groupId>org.jmockit</groupId>
             <artifactId>jmockit</artifactId>
@@ -71,11 +75,16 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
-
         <dependency>
             <groupId>ai.grakn</groupId>
             <artifactId>redis-mock</artifactId>
             <version>0.1.6</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.7.3</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

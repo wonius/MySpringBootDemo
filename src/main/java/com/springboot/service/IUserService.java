@@ -9,5 +9,5 @@ import com.springboot.domain.User;
  * @Date 2018/4/17
  */
 public interface IUserService {
-    User getUser();
+    public User getUser();
 }
