@@ -121,7 +121,15 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>${basedir}/src/test/resources/mytestng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <!-- 不单独开线程启动test -->
                     <forkMode>never</forkMode>
+                    <!--test结束时关闭mockServer-->
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>org.mockserver.maven.StopMockServerTestListener</value>
+                        </property>
+                    </properties>
                 </configuration>
             </plugin>
             <plugin>
@@ -130,10 +138,27 @@
                 <version>5.3.0</version>
                 <configuration>
                     <serverPort>1080</serverPort>
-                    <!--<logLevel>DEBUG</logLevel>-->
+                    <!--<proxyPort>1090</proxyPort>-->
+                    <logLevel>DEBUG</logLevel>
                     <pipeLogToConsole>true</pipeLogToConsole>
                     <initializationClass>com.springboot.integration.HttpMockServerInitializer</initializationClass>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>process-test-classes</id>
+                        <phase>process-test-classes</phase>
+                        <goals>
+                            <goal>runForked</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>verify</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>stopForked</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 		</plugins>
 	</build>
