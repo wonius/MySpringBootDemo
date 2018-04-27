@@ -11,7 +11,8 @@ import java.io.Serializable;
  * @Date 2018/4/17
  */
 public class User implements Serializable {
-    private String user;
+    private Long id;
+    private String name;
     private String host;
     private MultipartFile file;
 
@@ -23,12 +24,12 @@ public class User implements Serializable {
         this.file = file;
     }
 
-    public String getUser() {
-        return user;
+    public String getName() {
+        return name;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getHost() {
@@ -37,5 +38,13 @@ public class User implements Serializable {
 
     public void setHost(String host) {
         this.host = host;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
