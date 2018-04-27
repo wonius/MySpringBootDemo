@@ -119,7 +119,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${basedir}/src/test/resources/mytestng.xml</suiteXmlFile>
+                        <suiteXmlFile>${basedir}/src/test/resources/MyTestNG.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <!-- 不单独开线程启动test -->
                     <forkMode>never</forkMode>
