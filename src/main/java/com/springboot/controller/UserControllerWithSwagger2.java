@@ -31,7 +31,7 @@ public class UserControllerWithSwagger2 {
     static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
 
     @ApiOperation(value = "获取用户列表")
-    @RequestMapping(value = "/getUsers")
+    @RequestMapping(value = "/getUsers", method = RequestMethod.GET)
     public List<User> getUsers() {
         return new ArrayList<User>(users.values());
     }
@@ -46,7 +46,7 @@ public class UserControllerWithSwagger2 {
 
     @ApiOperation(value = "获取用户信息", notes = "根据id获取用户信息")
     @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "Long")
-    @RequestMapping(value = "/getUser")
+    @RequestMapping(value = "/getUser", method = RequestMethod.GET)
     public User getUser(@PathVariable Long id) {
         return users.get(id);
     }

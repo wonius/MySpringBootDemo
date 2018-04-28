@@ -39,7 +39,7 @@ public class JMockitInterfaceTest {
             @Mock
             public User getUser() {
                 User user = new User();
-                user.setUser("123");
+                user.setName("123");
                 user.setHost("abc");
                 return user;
             }
@@ -56,7 +56,7 @@ public class JMockitInterfaceTest {
 
         IUserService userService = new UserService();
         System.out.println(userService.getUser().getHost());
-        System.out.println(userService.getUser().getUser());
+        System.out.println(userService.getUser().getName());
 
     }
 }
