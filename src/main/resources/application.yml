@@ -10,3 +10,14 @@ mybatis:
   mapper-locations: classpath:mapping/*.xml
   config-locations: classpath:mybatis/mybatis-config.xml
 #  type-aliases-package: com.springboot.domain.
+
+jedis:
+  max:
+    total: 100
+    idle: 10
+    waitmillis: 10000
+    timeout: 10000
+  testOnBorrow: true
+  host: localhost
+  port: 6379
+  password: 123456
