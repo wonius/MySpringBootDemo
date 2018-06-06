@@ -12,6 +12,12 @@ import redis.clients.jedis.JedisPool;
 public class SubThread implements Runnable {
 
     private JedisPool jedisPool;
+    String pattern = "*";
+//    String pattern0 = "keyspace@0:SessionID_*";
+//    String pattern1 = "__key*__:*";
+//    String pattern2 = "__keyevent@0__:*";
+//    String[] patterns = new String[]{"SessionID_*"};
+
 
     public SubThread(JedisPool jedisPool) {
         this.jedisPool = jedisPool;
@@ -20,6 +26,6 @@ public class SubThread implements Runnable {
     @Override
     public void run() {
         Jedis jedis = jedisPool.getResource();
-        jedis.psubscribe(new RedisListener(), "SessionID_123");
+        jedis.psubscribe(new RedisListener(), pattern);
     }
 }
