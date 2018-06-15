@@ -1,6 +1,7 @@
 package com.springboot.common;
 
 import com.springboot.util.ApplicationContextUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
@@ -18,7 +19,7 @@ import javax.annotation.PostConstruct;
 @Component
 public class RedisListener extends JedisPubSub{
 
-    private static final String INSTANCE_LOCK = "INSTANCE_LOCK";
+    private static final String KEYS_LOCK = "KEYS_LOCK:";
 
     @Autowired
     private JedisPool jedisPool;
@@ -27,16 +28,23 @@ public class RedisListener extends JedisPubSub{
     @Override
     public void onPMessage(String pattern, String channel, String message) {
 
+        if (StringUtils.startsWith(message, KEYS_LOCK)) {
+            return;
+        }
+
         jedisPool = ApplicationContextUtil.getBean(JedisPool.class);
         jedis = jedisPool.getResource();
 
-        Long lock = jedis.setnx(INSTANCE_LOCK, "true");
+        Long lock = jedis.setnx(KEYS_LOCK + message, "true");
+        jedis.expire(KEYS_LOCK + message, 5);
         if (lock == 0) {
+            jedis.close();
             return ;
         }
 
         System.out.println(pattern + "=" + channel + "=" + message);
-        jedis.del(INSTANCE_LOCK);
+        jedis.del(KEYS_LOCK);
+        jedis.close();
     }
 
     @PostConstruct
