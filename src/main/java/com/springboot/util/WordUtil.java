@@ -1,6 +1,7 @@
 package com.springboot.util;
 
 import com.hankcs.hanlp.HanLP;
+import com.hankcs.hanlp.dictionary.CustomDictionary;
 import com.hankcs.hanlp.seg.Segment;
 import com.hankcs.hanlp.seg.common.Term;
 
@@ -30,8 +31,8 @@ public class WordUtil {
 
     public static void main(String[] args) {
 
-//        refreshDictionary();
-        segmentSentence("你是柴犬狗狗吧");
+        refreshDictionary();
+        segmentSentence("你是柴犬狗吧");
     }
 
     /**
@@ -42,15 +43,8 @@ public class WordUtil {
                 WordUtil.class.getResource(CUSTOM_DICTIONARY_PATH).getPath()
         };
 
-        for (int i = 0; i < HanLP.Config.CustomDictionaryPath.length; i++) {
-            File file = new File(HanLP.Config.CustomDictionaryPath[i]+".bin");
-            if (file.exists()) {
-                file.delete();
-            }
-        }
-
+        CustomDictionary.reload();
         segment = HanLP.newSegment().enableCustomDictionary(true);
-        segment.seg("");
     }
 
     /**
