@@ -25,7 +25,19 @@ public class SubThread implements Runnable {
 
     @Override
     public void run() {
-        Jedis jedis = jedisPool.getResource();
-        jedis.psubscribe(new RedisListener(), pattern);
+
+        //如果线程中出现问题，线程直接挂掉。
+        //使用while，重启线程
+        while(true) {
+            Jedis jedis = jedisPool.getResource();
+            try {
+                jedis.psubscribe(new RedisListener(), pattern);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                jedis.close();
+            }
+        }
+
     }
 }
