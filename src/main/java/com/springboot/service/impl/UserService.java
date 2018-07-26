@@ -4,7 +4,10 @@ import com.springboot.domain.User;
 import com.springboot.mapper.UserMapper;
 import com.springboot.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
 
 /**
  * 请编写注释
@@ -15,6 +18,11 @@ import org.springframework.stereotype.Service;
 @Service("userService")
 public class UserService implements IUserService {
 
+    public static String hello;
+
+    @Value("${hello.value}")
+    private String pHello;
+
     @Autowired
     private UserMapper userMapper;
 
@@ -22,4 +30,17 @@ public class UserService implements IUserService {
     public User getUser() {
         return userMapper.getUser();
     }
+
+    @Value("${hello.value}")
+    public void setHello(String hello) {
+        hello = hello;
+        System.out.println("XXXXXXXXXXXXXXXXXXXXX"+hello);
+    }
+
+    @PostConstruct
+    public void init() {
+        hello = pHello;
+        System.out.print("XXXXXXXXXXXXXXXXXXXXX"+hello);
+    }
+    
 }
