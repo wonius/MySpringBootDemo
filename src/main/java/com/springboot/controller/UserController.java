@@ -1,7 +1,7 @@
 package com.springboot.controller;
 
 import com.springboot.domain.User;
-import com.springboot.service.IUserService;
+import com.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 public class UserController {
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     @RequestMapping(value = "/getUser", method = RequestMethod.GET)
     public User getUser() {

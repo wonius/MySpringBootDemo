@@ -11,14 +11,14 @@ mybatis:
   config-locations: classpath:mybatis/mybatis-config.xml
 #  type-aliases-package: com.springboot.domain.
 
-jedis:
+redis:
   max:
     total: 100
     idle: 10
     waitmillis: 10000
     timeout: 10000
   testOnBorrow: true
-  host: localhost
+  host: 127.0.0.1
   port: 6379
   password: 123456
 

@@ -1,8 +1,8 @@
 package com.springboot.jmockit;
 
 import com.springboot.domain.User;
-import com.springboot.service.IUserService;
-import com.springboot.service.impl.UserService;
+import com.springboot.service.UserService;
+import com.springboot.service.impl.UserServiceImpl;
 import mockit.Injectable;
 import mockit.Mock;
 import mockit.MockUp;
@@ -35,7 +35,7 @@ public class JMockitInterfaceTest {
 
         };
 
-        new MockUp<UserService>() {
+        new MockUp<UserServiceImpl>() {
             @Mock
             public User getUser() {
                 User user = new User();
@@ -54,7 +54,7 @@ public class JMockitInterfaceTest {
         System.out.println(simpleInterfaceImpl.getCityName());
         System.out.println(simpleInterfaceImpl.getAreaName());
 
-        IUserService userService = new UserService();
+        UserService userService = new UserServiceImpl();
         System.out.println(userService.getUser().getHost());
         System.out.println(userService.getUser().getName());
 

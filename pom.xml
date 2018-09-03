@@ -123,6 +123,13 @@
             <artifactId>hanlp</artifactId>
             <version>portable-1.6.4</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.redisson/redisson -->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.7.5</version>
+        </dependency>
+
     </dependencies>
 
 	<build>

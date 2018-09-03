@@ -28,6 +28,7 @@ public class RedisListener extends JedisPubSub{
     @Override
     public void onPMessage(String pattern, String channel, String message) {
 
+        System.out.println("onPMessage, channel： " + channel.trim() + ", message: "+message);
         if (StringUtils.startsWith(message, KEYS_LOCK)) {
             return;
         }
@@ -42,19 +43,18 @@ public class RedisListener extends JedisPubSub{
             return ;
         }
 
-        System.out.println(pattern + "=" + channel + "=" + message);
         jedis.del(KEYS_LOCK);
         jedis.close();
     }
 
     @PostConstruct
     void init() {
-        jedis = jedisPool.getResource();
-        jedis.setnx("SessionID_123", "hello");
-        jedis.expire("SessionID_123", 10);
+//        jedis = jedisPool.getResource();
+//        jedis.setnx("SessionID_123", "hello");
+//        jedis.expire("SessionID_123", 10);
 
-//        SubThread subThread = new SubThread(jedisPool);
-//        Thread thread = new Thread(subThread);
-//        thread.start();
+        SubThread subThread = new SubThread(jedisPool);
+        Thread thread = new Thread(subThread);
+        thread.start();
     }
 }

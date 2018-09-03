@@ -8,6 +8,6 @@ import com.springboot.domain.User;
  * @author yangfan
  * @Date 2018/4/17
  */
-public interface IUserService {
+public interface UserService {
     public User getUser();
 }

@@ -2,7 +2,7 @@ package com.springboot.service.impl;
 
 import com.springboot.domain.User;
 import com.springboot.mapper.UserMapper;
-import com.springboot.service.IUserService;
+import com.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
  * @Date 2018/4/17
  */
 @Service("userService")
-public class UserService implements IUserService {
+public class UserServiceImpl implements UserService {
 
     public static String hello;
 

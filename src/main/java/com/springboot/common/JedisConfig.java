@@ -17,19 +17,19 @@ import redis.clients.jedis.JedisPoolConfig;
 @Configuration
 @EnableCaching
 public class JedisConfig extends CachingConfigurerSupport{
-    @Value("${jedis.port}")
+    @Value("${redis.port}")
     private int port;
-    @Value("${jedis.host}")
+    @Value("${redis.host}")
     private String host;
-    @Value("${jedis.max.total}")
+    @Value("${redis.max.total}")
     private Integer maxTotal;
-    @Value("${jedis.max.idle}")
+    @Value("${redis.max.idle}")
     private Integer maxIdle;
-    @Value("${jedis.max.waitmillis}")
+    @Value("${redis.max.waitmillis}")
     private Long maxWaitMillis;
-    @Value("${jedis.max.timeout}")
+    @Value("${redis.max.timeout}")
     private int timeout;
-    @Value("${jedis.password}")
+    @Value("${redis.password}")
     private String password;
 
 
